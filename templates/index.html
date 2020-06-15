@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <title>ProssImagen</title>
+    <SCRIPT LANGUAGE="JavaScript">
+        function salta(Sel) {
+            if (Sel.ad.selectedIndex != 0) {
+                document.location = Sel.ad.options[Sel.ad.selectedIndex].value
+            }
+        }
+    </SCRIPT>
+</head>
+<body>
+<header class="header">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light ">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='img/cs.png') }}" alt="" class="logo d-inline-block">
+            </a>
+            <h2 class="banner_titulo">COMPUTACIÓN GRAFICA<br> Grupo-9</h2>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav ml-auto text-center">
+                    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/cascada">Cascada</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#section__equipo">Equipo</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<main class="main">
+    <div class="content mt-5">
+        <h2 class="title col-md-6 offset-md-3 text-center mt-5">Procesamiento simple</h2>
+        <div class="row justify-content-between mt-5">
+            <div class="form col-md-4 text-center">
+            </div>
+            <div class="col-md-4 text-center">
+                <h2 class="subtext text-center mt-5">Seleccione el tipo de procesamiento </h2>
+                <div class="hero-container">
+                    <br>
+                    <form action="" method='post'>
+                        <SCRIPT LANGUAGE="JavaScript">
+                            var temp = ''
+                            temp += '<form><select name="ad" onchange="salta(this.form)">'
+                            temp += '<option selected> Seleccionar'
+                            temp += '<option value="thresholding.html">'
+                            temp += (document.URL.indexOf("thresholding.html") != -1) ? ' selected' : ''
+                            temp += 'Thresholding'
+                            temp += '<option value="contrast.html">'
+                            temp += (document.URL.indexOf("contrast.html") != -1) ? ' selected' : ''
+                            temp += 'Contrast stretching'
+                            temp += '<option value="outStret.html">'
+                            temp += (document.URL.indexOf("outStret.html") != -1) ? ' selected' : ''
+                            temp += 'Outlier C. Stretching'
+                            temp += '<option value="histo.html">'
+                            temp += (document.URL.indexOf("histo.html") != -1) ? ' selected' : ''
+                            temp += 'Ecualizacion de Histograma'
+                            temp += '<option value="log.html">'
+                            temp += (document.URL.indexOf("log.html") != -1) ? ' selected' : ''
+                            temp += 'Operador Logaritmico'
+                            temp += '<option value="raiz.html">'
+                            temp += (document.URL.indexOf("raiz.html") != -1) ? ' selected' : ''
+                            temp += 'Operador Raiz'
+                            temp += '<option value="expo.html">'
+                            temp += (document.URL.indexOf("expo.html") != -1) ? ' selected' : ''
+                            temp += 'Operador Exponencial'
+                            temp += '<option value="raisePower.html">'
+                            temp += (document.URL.indexOf("raisePower.html") != -1) ? ' selected' : ''
+                            temp += 'Operador RaiseToPower'
+                            temp += '<option value="add.html">'
+                            temp += (document.URL.indexOf("add.html") != -1) ? ' selected' : ''
+                            temp += 'Addition'
+                            temp += '<option value="addColor.html">'
+                            temp += (document.URL.indexOf("addColor.html") != -1) ? ' selected' : ''
+                            temp += 'Operador Addition Color'
+                            //temp += '<option value="subtraction.html">'
+                            //temp += (document.URL.indexOf("subtraction.html") != -1) ? ' selected' : ''
+                            //temp += 'Subtraction'
+                            temp += '<option value="subtraccContras.html">'
+                            temp += (document.URL.indexOf("subtraccContras.html") != -1) ? ' selected' : ''
+                            temp += 'Subtraction con Contrast Stretching'
+                            temp += '<option value="multiplication.html">'
+                            temp += (document.URL.indexOf("multiplication.html") != -1) ? ' selected' : ''
+                            temp += 'Multiplicación'
+                            temp += '<option value="blending.html">'
+                            temp += (document.URL.indexOf("blending.html") != -1) ? ' selected' : ''
+                            temp += 'Blending'
+                            temp += '<option value="divisionThresholding.html">'
+                            temp += (document.URL.indexOf("divisionThresholding.html") != -1) ? ' selected' : ''
+                            temp += 'División con Thresholding'
+                            temp += '<option value="divisionContrastStre.html">'
+                            temp += (document.URL.indexOf("divisionContrastStre.html") != -1) ? ' selected' : ''
+                            temp += 'División con Contrast Stretching'
+                            temp += '<option value="and.html">'
+                            temp += (document.URL.indexOf("and.html") != -1) ? ' selected' : ''
+                            temp += 'Operador Logico AND'
+                            temp += '<option value="or.html">'
+                            temp += (document.URL.indexOf("or.html") != -1) ? ' selected' : ''
+                            temp += 'Operador Logico OR'
+                            temp += '<option value="Xor.html">'
+                            temp += (document.URL.indexOf("Xor.html") != -1) ? ' selected' : ''
+                            temp += 'Operador Logico XOR'
+                            temp += '</select></form>'
+                            document.write(temp)
+                        </SCRIPT>
+                        <br>
+                        <br>
+                        <br>
+
+
+                    </form>
+                </div>
+            </div>
+            <div class="form col-md-4 text-center">
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- footer -->
+<!-- Footer -->
+<footer id="sticky-footer" class="footer page-footer font-small site-footer">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3" style="background-color: chartreuse; margin-top: 202px">© 2020 Copyright:
+        <a href="https://github.com/UNSA-Computacion-Grafica-Grupo-09" style="color: darkblue"> Git UNSA-Computacion-Grafica-Grupo-09
+        </a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+<!-- Footer -->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+</html>

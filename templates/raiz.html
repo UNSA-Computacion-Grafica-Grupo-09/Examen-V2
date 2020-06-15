@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Operador Raiz{% endblock %}
+
+{% block content %}
+<main class="main">
+    <div class="content mt-5">
+        <h2 class="title col-md-6 offset-md-3 text-center mt-5">Procesamiento simple</h2>
+        <h2 class="title col-md-6 offset-md-3 text-center">Operador Raiz</h2>
+        <div class="row justify-content-between mt-5">
+            <div class="form col-md-4 text-center">
+            </div>
+            <div class="col-md-4 text-center">
+                <h2 class="subtext text-center">Analizando la imagen </h2>
+                <div class="hero-container">
+                    <br>
+                    <form action="/raiz" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="archivo">
+                        <br>
+                        <br>
+                        <button type="submit"   class="btn btn-info btn-lg">Iniciar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="form col-md-4 text-center">
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

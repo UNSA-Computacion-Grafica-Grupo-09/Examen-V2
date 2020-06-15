@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Operador Raise the power{% endblock %}
+
+{% block content %}
+<main class="main">
+    <div class="content mt-5">
+        <h2 class="title col-md-6 offset-md-3 text-center mt-5">Procesamiento simple</h2>
+        <h2 class="title col-md-6 offset-md-3 text-center">Operador Raise the power</h2>
+        <div class="row justify-content-between">
+            <div class="form col-md-4 text-center">
+            </div>
+            <div class="col-md-4 text-center">
+                <h2 class="subtext text-center mt-5">Analizando la imagen </h2>
+                <div class="hero-container">
+                    <br>
+                    <form action="/raise" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="archivo">
+                        <br>
+                        <br>
+                        Ingrese un valor de C: <input type="text" id="C" name="C">
+                        <br>
+                        <br>
+                        <button type="submit"   class="btn btn-info btn-lg">Iniciar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="form col-md-4 text-center">
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
