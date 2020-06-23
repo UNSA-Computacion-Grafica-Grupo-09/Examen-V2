@@ -628,4 +628,21 @@ def op_XOR_Thresholding(image1, image2):
 
     res = img1
     return res
-########## EJER 4
+
+#############################################################
+############## PRACTICA 9.1  ################################
+#############################################################
+
+########### EJERCICIO 1
+
+def trasladar_imagen(image, tx, ty):
+    img = image.copy()
+    ancho = img.shape[1]  # Columnas
+    alto = img.shape[0]  # Filas
+
+    M = np.float32([[1, 0, tx], [0, 1, ty]])
+    imageOut = cv2.warpAffine(img, M, (ancho, alto))
+
+    return imageOut
+
+

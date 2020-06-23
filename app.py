@@ -9,7 +9,7 @@ from procesar_algoritmos import procesar_algoritmo_logaritmico, procesar_algorit
     procesar_algoritmo_arithmetic_add_color, procesar_algoritmo_exponencial, procesar_algoritmo_power_raise, \
     procesar_algoritmo_op_multiplicacion, procesar_algoritmo_ope_blend, procesar_algoritmo_sustraction_Contrast, \
     procesar_algoritmo_pixel_division_Thresholding, procesar_algoritmo_pixel_division_Contrast, procesar_algoritmo_operador_AND, \
-    procesar_algoritmo_operador_OR_Thresholding, procesar_algoritmo_op_XOR_Thresholding
+    procesar_algoritmo_operador_OR_Thresholding, procesar_algoritmo_op_XOR_Thresholding, procesar_algoritmo_trasladar_imagen
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './static/media'
@@ -115,6 +115,10 @@ def operadorOR_html():
 def operadorXOR_html():
     return render_template('Xor.html')
 
+@app.route('/trasladar.html')
+def trasladar_html():
+    return render_template('trasladar.html')
+
 
 #################################################
 # Algoritmos
@@ -196,7 +200,7 @@ def expo():
 
         C = int(request.form.get('C'))
 
-        ruta_imagen_resultado = procesar_algoritmo_exponencial(C, app.config['UPLOAD_FOLDER'], filename, 'raiz-')
+        ruta_imagen_resultado = procesar_algoritmo_exponencial(C, app.config['UPLOAD_FOLDER'], filename, 'expo-')
         return render_template('result.html', imagen=ruta_imagen_resultado)
 
 
@@ -389,8 +393,21 @@ def operadorXor():
                                                                         filename2, 'Xor-')
         return render_template('result.html', imagen=ruta_imagen_resultado)
 
+@app.route('/trasladar', methods=['POST'])
+def trasladarImg():
+    if request.method == 'POST':
+        image = request.files['archivo']
+        filename = secure_filename(image.filename)
+        full_filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        image.save(full_filename)
 
-#################################################
+        x = float(request.form.get('x'))
+        y = float(request.form.get('y'))
+
+        ruta_imagen_resultado = procesar_algoritmo_trasladar_imagen(x, y, app.config['UPLOAD_FOLDER'], filename, 'tras-')
+        return render_template('result.html', imagen=ruta_imagen_resultado)
+
+######################################################################################################################
 
 
 @app.route('/cascada')
