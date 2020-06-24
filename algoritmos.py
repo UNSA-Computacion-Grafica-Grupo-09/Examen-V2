@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import math
 
 
 #########################  EJEMPLO ############################
@@ -635,6 +636,7 @@ def op_XOR_Thresholding(image1, image2):
 
 ########### EJERCICIO 1
 
+##### TRASLADAR IMAGEN
 def trasladar_imagen(image, tx, ty):
     img = image.copy()
     ancho = img.shape[1]  # Columnas
@@ -645,4 +647,21 @@ def trasladar_imagen(image, tx, ty):
 
     return imageOut
 
+##### ROTAR IMAGEN
 
+def rotar_imagen(image, a):
+    img = image.copy()
+    ancho = img.shape[1]  # Columnas
+    alto = img.shape[0]  # Filas
+
+    def matrix_rotacion(angulo, tx, ty):
+        coseno = math.cos(angulo)
+        seno = math.sin(angulo)
+        calcular_1 = (1 - coseno) * tx - seno * ty
+        calcular_2 = seno * tx + (1 - coseno) * ty
+        return np.array([[coseno, seno, calcular_1], [-seno, coseno, calcular_2]], dtype=np.float32)
+
+    M = matrix_rotacion(a, ancho // 2, alto // 2)
+    imageOut = cv2.warpAffine(img, M, (ancho, alto))
+
+    return imageOut
