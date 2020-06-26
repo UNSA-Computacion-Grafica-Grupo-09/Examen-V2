@@ -665,3 +665,27 @@ def rotar_imagen(image, a):
     imageOut = cv2.warpAffine(img, M, (ancho, alto))
 
     return imageOut
+
+##### ESCALAR IMAGEN
+
+def escalar_imagen(image, tx, ty):
+    img = image.copy()
+    ancho = img.shape[1]  # Columnas
+    alto = img.shape[0]  # Filas
+
+    M = np.array([[tx, 0, 0], [0, ty, 0]], dtype=np.float32)
+    imageOut = cv2.warpAffine(img, M, (ancho, alto))
+
+    return imageOut
+
+### SHEAR IMAGEN
+
+def shear_imagen(image):
+    img = image.copy()
+    ancho = img.shape[1]  # Columnas
+    alto = img.shape[0]  # Filas
+
+    M = np.float32([[1, 0.2, 0], [0.2, 1, 0]])
+    imageOut = cv2.warpAffine(image, M, (ancho, alto))
+
+    return imageOut

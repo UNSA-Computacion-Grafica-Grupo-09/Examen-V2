@@ -9,7 +9,8 @@ from procesar_algoritmos import procesar_algoritmo_logaritmico, procesar_algorit
     procesar_algoritmo_arithmetic_add_color, procesar_algoritmo_exponencial, procesar_algoritmo_power_raise, \
     procesar_algoritmo_op_multiplicacion, procesar_algoritmo_ope_blend, procesar_algoritmo_sustraction_Contrast, \
     procesar_algoritmo_pixel_division_Thresholding, procesar_algoritmo_pixel_division_Contrast, procesar_algoritmo_operador_AND, \
-    procesar_algoritmo_operador_OR_Thresholding, procesar_algoritmo_op_XOR_Thresholding, procesar_algoritmo_trasladar_imagen
+    procesar_algoritmo_operador_OR_Thresholding, procesar_algoritmo_op_XOR_Thresholding, procesar_algoritmo_trasladar_imagen, \
+    procesar_algoritmo_rotar_imagen
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './static/media'
@@ -118,6 +119,10 @@ def operadorXOR_html():
 @app.route('/trasladar.html')
 def trasladar_html():
     return render_template('trasladar.html')
+
+@app.route('/rotarImage.html')
+def rotar_html():
+    return render_template('rotarImage.html')
 
 
 #################################################
@@ -405,6 +410,19 @@ def trasladarImg():
         y = float(request.form.get('y'))
 
         ruta_imagen_resultado = procesar_algoritmo_trasladar_imagen(x, y, app.config['UPLOAD_FOLDER'], filename, 'tras-')
+        return render_template('result.html', imagen=ruta_imagen_resultado)
+
+@app.route('/rotar', methods=['POST'])
+def rotarImg():
+    if request.method == 'POST':
+        image = request.files['archivo']
+        filename = secure_filename(image.filename)
+        full_filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        image.save(full_filename)
+
+        x = float(request.form.get('x'))
+
+        ruta_imagen_resultado = procesar_algoritmo_rotar_imagen(x, app.config['UPLOAD_FOLDER'], filename, 'rotar-')
         return render_template('result.html', imagen=ruta_imagen_resultado)
 
 ######################################################################################################################
