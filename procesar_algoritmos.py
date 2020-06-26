@@ -3,7 +3,7 @@ import cv2
 from algoritmos import algoritmo_dummy, operador_logaritmico, threholding, constrast_streching, constrast_streching_out, \
     histogram_equalization, operador_raiz, arithmetic_add, arithmetic_add_colores, operador_exponencial, power_raise, \
     op_multiplicacion, ope_blend, pixel_sustraction_Contrast, pixel_division_Thresholding, pixel_division_Contrast, operador_AND, \
-    operador_OR_Thresholding, op_XOR_Thresholding, trasladar_imagen, rotar_imagen
+    operador_OR_Thresholding, op_XOR_Thresholding, trasladar_imagen, rotar_imagen, escalar_imagen, shear_imagen
 
 
 # lee la imagen, aplica el algoritmo y retorna la ruta completa de
@@ -279,6 +279,28 @@ def procesar_algoritmo_rotar_imagen(x, ruta, nombre_imagen1, prefijo):
 
     # Llamo al algoritmo y guardo el resultado
     imagen_resultado = rotar_imagen(imagen1, x)
+
+    ruta_imagen_resultado = os.path.join(ruta, prefijo + nombre_imagen1)
+    cv2.imwrite(ruta_imagen_resultado, imagen_resultado)
+    return ruta_imagen_resultado
+
+def procesar_algoritmo_escalar_imagen(tx, ty, ruta, nombre_imagen1, prefijo):
+    ruta_imagen1 = os.path.join(ruta, nombre_imagen1)
+    imagen1 = cv2.imread(ruta_imagen1)
+
+    # Llamo al algoritmo y guardo el resultado
+    imagen_resultado = escalar_imagen(imagen1, tx, ty)
+
+    ruta_imagen_resultado = os.path.join(ruta, prefijo + nombre_imagen1)
+    cv2.imwrite(ruta_imagen_resultado, imagen_resultado)
+    return ruta_imagen_resultado
+
+def procesar_algoritmo_shear_imagen(ruta, nombre_imagen1, prefijo):
+    ruta_imagen1 = os.path.join(ruta, nombre_imagen1)
+    imagen1 = cv2.imread(ruta_imagen1)
+
+    # Llamo al algoritmo y guardo el resultado
+    imagen_resultado = shear_imagen(imagen1)
 
     ruta_imagen_resultado = os.path.join(ruta, prefijo + nombre_imagen1)
     cv2.imwrite(ruta_imagen_resultado, imagen_resultado)

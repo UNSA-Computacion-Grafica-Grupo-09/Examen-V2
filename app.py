@@ -10,7 +10,7 @@ from procesar_algoritmos import procesar_algoritmo_logaritmico, procesar_algorit
     procesar_algoritmo_op_multiplicacion, procesar_algoritmo_ope_blend, procesar_algoritmo_sustraction_Contrast, \
     procesar_algoritmo_pixel_division_Thresholding, procesar_algoritmo_pixel_division_Contrast, procesar_algoritmo_operador_AND, \
     procesar_algoritmo_operador_OR_Thresholding, procesar_algoritmo_op_XOR_Thresholding, procesar_algoritmo_trasladar_imagen, \
-    procesar_algoritmo_rotar_imagen
+    procesar_algoritmo_rotar_imagen, procesar_algoritmo_escalar_imagen, procesar_algoritmo_shear_imagen
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './static/media'
@@ -123,6 +123,14 @@ def trasladar_html():
 @app.route('/rotarImage.html')
 def rotar_html():
     return render_template('rotarImage.html')
+
+@app.route('/escalarImage.html')
+def escalar_html():
+    return render_template('escalarImage.html')
+
+@app.route('/shearImage.html')
+def shear_html():
+    return render_template('shearImage.html')
 
 
 #################################################
@@ -423,6 +431,33 @@ def rotarImg():
         x = float(request.form.get('x'))
 
         ruta_imagen_resultado = procesar_algoritmo_rotar_imagen(x, app.config['UPLOAD_FOLDER'], filename, 'rotar-')
+        return render_template('result.html', imagen=ruta_imagen_resultado)
+
+@app.route('/escalar', methods=['POST'])
+def escalarImg():
+    if request.method == 'POST':
+        image = request.files['archivo']
+        filename = secure_filename(image.filename)
+        full_filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        image.save(full_filename)
+
+        x = float(request.form.get('x'))
+        y = float(request.form.get('y'))
+
+        ruta_imagen_resultado = procesar_algoritmo_escalar_imagen(x, y, app.config['UPLOAD_FOLDER'], filename,
+                                                                    'escalar-')
+        return render_template('result.html', imagen=ruta_imagen_resultado)
+
+@app.route('/shear', methods=['POST'])
+def shearImg():
+    if request.method == 'POST':
+        image = request.files['archivo']
+        filename = secure_filename(image.filename)
+        full_filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        image.save(full_filename)
+
+        ruta_imagen_resultado = procesar_algoritmo_shear_imagen(app.config['UPLOAD_FOLDER'], filename,
+                                                                    'shear-')
         return render_template('result.html', imagen=ruta_imagen_resultado)
 
 ######################################################################################################################
